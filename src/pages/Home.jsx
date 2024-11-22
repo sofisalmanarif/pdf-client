@@ -24,7 +24,7 @@ const Home = () => {
         folders.map((folder, index) =>  <Link key={folder} to={`/view-pdf/${folder}`} className="flex flex-col items-center">
         <img
           className="w-36 h-36"
-          src="../public/pdf-icon-red-and-white-color-for-free-png.webp"
+          src="/pdf-icon-red-and-white-color-for-free-png.webp"
           alt=""
         />
         <h2>{folder}</h2>
