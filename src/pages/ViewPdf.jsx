@@ -3,10 +3,15 @@ import { Link, useParams } from "react-router-dom";
 import { Worker } from "@react-pdf-viewer/core";
 import { Viewer } from "@react-pdf-viewer/core";
 
+
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import axios from "axios";
 import RenderHighlightAreas from "../components/RenderHighlightedAreas";
 import Popup from "../components/Popup";
+
+
+// Import styles
+import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 
 const ViewPdf = () => {
   const { filename } = useParams();
@@ -14,6 +19,7 @@ const ViewPdf = () => {
   const [cordinatesArray, setCordinatesArray] = useState(null);
 
   const [isDilogueOpen,setIsDialogueOpen] = useState(false)
+  
 
   function findElement(id) {
     let element = pdfData
@@ -56,6 +62,9 @@ const ViewPdf = () => {
     setCordinatesArray(transformedData);
     console.log(cordinatesArray);
   }
+
+ 
+  
 
   async function getPdfdata() {
     try {
@@ -108,11 +117,11 @@ const ViewPdf = () => {
             <p
               onClick={() => findElement(element.element_id)}
               key={element.element_id}
-              className="text-lg my-10 text text-zinc-300 hover:font-bold hover:text-white ease-in-out duration-500"
+              className="text-lg max-w-[90%] my-10 text text-zinc-300 hover:font-bold hover:text-white ease-in-out duration-500"
             >
               {element.text}
             </p>
-              <span onClick={()=>setIsDialogueOpen((prev)=>!prev)} >```</span>
+              <span className="cursor-pointer font-semibold p-4" onClick={()=>setIsDialogueOpen((prev)=>!prev)} >. . .</span>
 
               
             </div>
