@@ -6,11 +6,14 @@ import { Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import axios from "axios";
 import RenderHighlightAreas from "../components/RenderHighlightedAreas";
+import Popup from "../components/Popup";
 
 const ViewPdf = () => {
   const { filename } = useParams();
   const [pdfData, setPdfData] = useState(null);
   const [cordinatesArray, setCordinatesArray] = useState(null);
+
+  const [isDilogueOpen,setIsDialogueOpen] = useState(false)
 
   function findElement(id) {
     let element = pdfData
@@ -98,17 +101,26 @@ const ViewPdf = () => {
           )}
         </div>
       </div>
-      <div className="w-[30%] py-10 px-10 h-screen overflow-y-auto">
+      <div className="w-[30%] relative  py-10 px-10 h-screen overflow-y-auto">
         {pdfData &&
           pdfData.map((element) => (
+            <div className="flex  justify-between items-center">
             <p
               onClick={() => findElement(element.element_id)}
               key={element.element_id}
-              className="text-lg my-10"
+              className="text-lg my-10 text text-zinc-300 hover:font-bold hover:text-white ease-in-out duration-500"
             >
               {element.text}
             </p>
+              <span onClick={()=>setIsDialogueOpen((prev)=>!prev)} >```</span>
+
+              
+            </div>
           ))}
+{
+                isDilogueOpen && <Popup metaData={cordinatesArray} setIsDialogueOpen={setIsDialogueOpen}/>
+              }
+          
       </div>
     </div>
   );
