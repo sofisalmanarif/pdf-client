@@ -159,7 +159,7 @@ const ViewPdf = () => {
             </p>
               </div>
              <div>
-              <img onClick={()=>setIsDialogueOpen((prev)=>!prev)} src="../../public/app.png" className="h-6 absolute top-6 right-6 cursor-pointer" alt="" />
+              <img onClick={()=>setIsDialogueOpen((prev)=>!prev)} src="/app.png" className="h-6 absolute top-6 right-6 cursor-pointer" alt="" />
              </div>
              
 
