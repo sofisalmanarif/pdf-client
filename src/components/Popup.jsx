@@ -6,7 +6,7 @@ const Popup = ({metaData={},setIsDialogueOpen}) => {
     <div className="bg-white shadow-lg mt-20 flex-col text-black h-92 py-4 px-6   rounded-md flex  w-[700px] absolute top-2 left-[36%]">
         <div className='flex flex-col justify-between relative'>
         <span  onClick={()=>setIsDialogueOpen((prev)=>!prev)} className=' h-8  w-8 m-2 absolute top-0 -right-4 flex  font-bold items-center justify-center rounded-full'>
-            <img src="../../public/Flat_cross_icon.svg.png" alt="" />
+            <img src="/Flat_cross_icon.svg.png" alt="" />
         </span>
             <div className="flex text-lg font-semibold text-zinc-600  pt-16 w-full h-full flex-col ">
             <span> Page Number : {metaData[0].page_number}</span>
