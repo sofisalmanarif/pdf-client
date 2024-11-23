@@ -61,21 +61,21 @@ const ViewPdf = () => {
   
    }
    else if(pdfData[0].type ==="CompositeElement"){
-    console.log("alag json hai")
-    console.log("pdf-data",pdfData);
+    // console.log("alag json hai")
+    // console.log("pdf-data",pdfData);
     const extractedData = pdfData.filter((element)=>element.element_id ==id)[0].metadata.map((smallElement)=>smallElement)
     console.log("extractedData",extractedData)
     const metadata= extractedData.map((elem)=> 
       ( 
       {coordinates:elem.metadata.coordinates,
-      page_number : elem.metadata.page_number
+      page_number : elem.metadata.page_number,
+      type:elem.type
     }))
     setMetaData(metadata)
     console.log("metadata",metadata)
     // let extraxtedMetaData = metadata.map((item) => (item.page_number,item.coordinates))
     //  metadata.map((item) => item.points.map((item,idx)=>console.log(idx ,item)))
     const resultArray = metadata.map((item) => {
-      console.log("item",item.coordinates.layout_height)
       const points = item.coordinates.points;
       const top = points[0][1]/(item.coordinates.layout_height/100); // y-coordinate of the top-left point
       const left = points[0][0]/(item.coordinates.layout_width/100); // x-coordinate of the top-left point
@@ -91,9 +91,9 @@ const ViewPdf = () => {
       };
     });
     
-    console.log(resultArray);
+    // console.log(resultArray);
     setCordinatesArray(resultArray)
-    console.log("cordarray",cordinatesArray)
+    // console.log("cordarray",cordinatesArray)
     
    }
   }
@@ -121,12 +121,12 @@ const ViewPdf = () => {
 
   return (
     <div className="w-full h-screen flex">
-      <div className="pl-20 w-[70%]">
-        <div className="flex items-center justify-between">
-          <Link className="px-4 py-2 rounded-md bg-blue-400 text-white" to="/">
-            Back
+      <div className=" w-[70%]">
+        <div className="flex pl-10 items-center justify-between">
+          <Link  className=" fixed top-8 left-20" to="/">
+            <img className="h-10 w-10" src="../../public/back-icon.png" alt="" />
           </Link>
-          <h1 className="text-3xl font-bold text-center mt-10">{filename}</h1>
+          <h1 className="text-3xl ml-28 font-bold text-center mt-10">{filename}</h1>
         </div>
         <div className="h-full  mt-5">
           {pdfData ? (
@@ -145,21 +145,23 @@ const ViewPdf = () => {
           )}
         </div>
       </div>
-      <div className="w-[30%]   my-20 py-2 px-10 h-screen overflow-y-auto">
+      <div className="w-[30%]   mt-20 py-2 px-10 h-screen overflow-y-auto">
         {pdfData &&
           pdfData.map((element) => (
-            <div onClick={() => findElement(element.element_id)} className="flex   justify-between items-center bg-zinc-100 hover:bg-zinc-300 mb-2 rounded-md">
-              <div  className=" w-[90%] flex mb-2 rounded-md px-2">
+            <div onClick={() => findElement(element.element_id)} className="flex border-2 border-gray-200 relative px-4 justify-between items-center bg-zinc-100 hover:bg-zinc-300 mb-4 rounded-md">
+              <div  className=" w-[98%] flex mb-2 rounded-md px-2">
               <p
               onClick={() => findElement(element.element_id)}
               key={element.element_id}
-              className="text-lg max-w-[90%] my-10 text   hover:font hover:text-black ease-in-out duration-500"
+              className="text-md max-w-[94%] mt-12 mb-10 text text-justify  hover:text-black ease-in-out duration-500"
             >
               {element.text}
             </p>
               </div>
-           
-              <span className="cursor-pointer font-extrabold p-4" onClick={()=>setIsDialogueOpen((prev)=>!prev)} >. . .</span>
+             <div>
+              <img onClick={()=>setIsDialogueOpen((prev)=>!prev)} src="../../public/app.png" className="h-6 absolute top-6 right-6 cursor-pointer" alt="" />
+             </div>
+             
 
               
             </div>
