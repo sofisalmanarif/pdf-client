@@ -6,12 +6,13 @@ const Popup = ({metaData=[],setIsDialogueOpen}) => {
     <div>
 
     {
-      metaData.length == 1? <div className="bg-white shadow-lg px-10 mt-20 flex-col text-black h-92   py-6  rounded-md flex  w-[750px] absolute top-2 left-[36%]">
+      metaData.length == 1? 
+      <div className="bg-white  shadow-lg px-10 mt-20 flex-col text-black h-auto   py-6  rounded-md flex  w-[600px] absolute top-2 left-[36%]">
       <div className='flex flex-col justify-between relative'>
-      <span  onClick={()=>setIsDialogueOpen((prev)=>!prev)} className='hover:rotate-45 ease-in-out duration-300 h-8 cursor-pointer w-8 mx-2 absolute top-0 -right-4 flex  font-bold items-center justify-center rounded-full'>
+      <span  onClick={()=>setIsDialogueOpen((prev)=>!prev)} className='hover:rotate-45 ease-in-out duration-300 h-8 cursor-pointer w-8 mx-2 absolute -top-2 -right-6 flex  font-bold items-center justify-center rounded-full'>
           <img src="/cross-icon.png" alt="" />
       </span>
-          <div className="flex text-lg font-semibold text-zinc-600 border  px-2 py-4 rounded-md bg-gray-100 mt-16 w-full h-full flex-col ">
+          <div className="flex text-sm font-semibold text-zinc-600 border  px-2 py-4 rounded-md bg-gray-100 mt-10 w-full h-full flex-col ">
           <div className='flex flex-col'>
           <h3 className='text-black mb-1 text-xl'>Details of Highlighted Element </h3>
                  <span> Page Number : {metaData[0].page_number}</span>
@@ -26,15 +27,16 @@ const Popup = ({metaData=[],setIsDialogueOpen}) => {
           
           </div>
       </div>
-        </div>: <div className="bg-white shadow-lg mt-20 flex-col text-black h-92 py-4 px-6   rounded-md flex  w-[1400px] absolute top-2 left-[20%]">
+        </div>: 
+        <div className="bg-white shadow-lg mt-20 flex-col text-black h-auto py-4 px-6   rounded-md flex  w-auto absolute top-2 left-[20%]">
         <div className='flex flex-col justify-between relative'>
         <span  onClick={()=>setIsDialogueOpen((prev)=>!prev)} className='hover:rotate-45 ease-in-out duration-300 h-8 cursor-pointer w-8 mx-2 absolute top-0 -right-4 flex  font-bold items-center justify-center rounded-full'>
         <img src="/cross-icon.png" alt="" />
         </span>
-            <div className="flex text-lg font-semibold text-zinc-600  pt-16 w-full h-full flex-col ">
+            <div className="flex text-sm font-semibold text-zinc-600  pt-10 w-full h-full flex-col ">
             <div className='grid grid-cols-3 '>
       {metaData.map((data, index) => (
-        <div key={index} className=' m-2 p-10 text-lg font-semibold text-zinc-600 border  px-4 py-4 rounded-md bg-zinc-100'>
+        <div key={index} className=' m-2 p-10 text-sm font-semibold text-zinc-600 border  px-4 py-4 rounded-md bg-gray-100'>
           <h3 className='text-black mb-1 text-xl'>Details of Highlighted Element {index + 1}</h3>
           <p>Page Number: {data.page_number}</p>
           <p>Layout Width: {data.coordinates.layout_width}</p>

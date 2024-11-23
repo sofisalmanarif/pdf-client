@@ -120,15 +120,15 @@ const ViewPdf = () => {
   }, [filename]); 
 
   return (
-    <div className="w-full h-screen flex">
-      <div className=" w-[70%]">
+    <div className="w-full relative max-h-screen  flex">
+      <div className=" w-[70%] ">
         <div className="flex pl-10 items-center justify-between">
-          <Link  className=" fixed top-8 left-20" to="/">
-            <img className="h-10 w-10" src="/back-icon.png" alt="" />
+          <Link  className=" fixed top-[20px] left-20" to="/">
+            <img className="h-8 w-8" src="/back-icon.png" alt="" />
           </Link>
-          <h1 className="text-3xl ml-28 font-bold text-center mt-10">{filename}</h1>
+          <h1 className="text-2xl ml-24 font-bold text-center py-6 ">{filename}</h1>
         </div>
-        <div className="h-full  mt-5">
+        <div className=" h-[90%] pl-20">
           {pdfData ? (
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
               {cordinatesArray ? (
@@ -145,21 +145,21 @@ const ViewPdf = () => {
           )}
         </div>
       </div>
-      <div className="w-[30%]   mt-20 py-2 px-10 h-screen overflow-y-auto">
+      <div className="w-[30%]  mt-20 px-10  overflow-y-auto">
         {pdfData &&
           pdfData.map((element) => (
             <div onClick={() => findElement(element.element_id)} className="flex border-2 border-gray-200 relative px-4 justify-between items-center bg-zinc-100 hover:bg-zinc-300 mb-4 rounded-md">
-              <div  className=" w-[98%] flex mb-2 rounded-md px-2">
+              <div  className=" w-[98%] flex mb-2 rounded-md ">
               <p
               onClick={() => findElement(element.element_id)}
               key={element.element_id}
-              className="text-md max-w-[94%] mt-12 mb-10 text text-justify  hover:text-black ease-in-out duration-500"
+              className="text-sm max-w-[94%] mt-12 mb-2 text text-justify  hover:text-black ease-in-out duration-500"
             >
               {element.text}
             </p>
               </div>
              <div>
-              <img onClick={()=>setIsDialogueOpen((prev)=>!prev)} src="/app.png" className="h-6 absolute top-6 right-6 cursor-pointer" alt="" />
+              <img onClick={()=>setIsDialogueOpen((prev)=>!prev)} src="/app.png" className="h-4 absolute top-4 right-4 cursor-pointer" alt="" />
              </div>
              
 
