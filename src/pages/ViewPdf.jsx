@@ -23,7 +23,7 @@ const ViewPdf = () => {
   
 
   function findElement(id) {
-   if(pdfData[0].type ==="Title"){
+   if(!(pdfData[0].type ==="CompositeElement")){
     let element = pdfData
     .filter((element) => element.element_id === id)
     .map((element) => element.metadata);
