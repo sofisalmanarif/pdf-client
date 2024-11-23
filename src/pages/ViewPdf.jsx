@@ -124,7 +124,7 @@ const ViewPdf = () => {
       <div className=" w-[70%]">
         <div className="flex pl-10 items-center justify-between">
           <Link  className=" fixed top-8 left-20" to="/">
-            <img className="h-10 w-10" src="../../public/back-icon.png" alt="" />
+            <img className="h-10 w-10" src="/back-icon.png" alt="" />
           </Link>
           <h1 className="text-3xl ml-28 font-bold text-center mt-10">{filename}</h1>
         </div>
