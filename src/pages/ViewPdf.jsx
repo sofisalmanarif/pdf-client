@@ -147,13 +147,13 @@ const ViewPdf = () => {
         </div>
       </div>
       <div className="w-[30%]  mt-20 px-10  overflow-y-auto">
-        {pdfData &&
+        {pdfData ?
           pdfData.map((element) => (
-            <div onClick={() => findElement(element.element_id)} className="flex border-2 border-gray-200 relative px-4 justify-between items-center bg-zinc-100 hover:bg-zinc-300 mb-4 rounded-md">
+            <div key={element.element_id} onClick={() => findElement(element.element_id)} className="flex border-2 border-gray-200 relative px-4 justify-between items-center bg-zinc-100 hover:bg-zinc-300 mb-4 rounded-md">
               <div  className=" w-[98%] flex mb-2 rounded-md ">
               <p
               onClick={() => findElement(element.element_id)}
-              key={element.element_id}
+              
               className="text-sm max-w-[94%] mt-12 mb-2 text text-justify  hover:text-black ease-in-out duration-500"
             >
               {element.text}
@@ -166,7 +166,11 @@ const ViewPdf = () => {
 
               
             </div>
-          ))}
+          )
+          ):
+          <p>
+            No elements found in the PDF
+          </p>}
 {
                 isDilogueOpen && <Popup metaData={metaData} setIsDialogueOpen={setIsDialogueOpen}/>
               }
