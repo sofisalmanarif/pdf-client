@@ -12,6 +12,7 @@ import Popup from "../components/Popup";
 
 // Import styles
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
+import { Url } from "./Home";
 
 const ViewPdf = () => {
   const { filename } = useParams();
@@ -104,7 +105,7 @@ const ViewPdf = () => {
   async function getPdfdata() {
     try {
       const { data } = await axios.get(
-        `https://pdfserver-x314vhv1.b4a.run/data/${filename}`
+        `${Url}/data/${filename}`
       );
       setPdfData(data);
         console.log("json data",data[0].type);
@@ -133,11 +134,11 @@ const ViewPdf = () => {
             <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
               {cordinatesArray ? (
                 <RenderHighlightAreas
-                  fileUrl={`https://pdfserver-x314vhv1.b4a.run/files/${filename}`}
+                  fileUrl={`${Url}/files/${filename}`}
                   areas={cordinatesArray}
                 />
               ) : (
-                <Viewer theme={Popup} fileUrl={`https://pdfserver-x314vhv1.b4a.run/files/${filename}`} />
+                <Viewer theme={Popup} fileUrl={`${Url}/files/${filename}`} />
               )}
             </Worker>
           ) : (

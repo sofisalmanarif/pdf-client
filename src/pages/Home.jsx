@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 import Popup from '../components/Popup';
 
 
+export const Url = "https://pdfserver-x314vhv1.b4a.run"
+// export const Url = "http://localhost:3000"
 const Home = () => {
     const [folders, setFolders] = useState([]);
     const [pdfFile, setPdfFile] = useState(null)
     const [jsonFile, setJsonFile] = useState(null)
     
     async function getPdfs() {
-      const { data } = await axios.get("https://pdfserver-x314vhv1.b4a.run/get-pdf-files");
+      const { data } = await axios.get(`${Url}/get-pdf-files`);
       setFolders(data.folderFiles);
       console.log(folders);
     }
@@ -26,14 +28,14 @@ const Home = () => {
         const formDataPdf = new FormData();
         formDataPdf.append("file", pdfFile);
     
-        const pdfRes = await axios.post("https://pdfserver-x314vhv1.b4a.run/upload-pdf", formDataPdf, {
+        const pdfRes = await axios.post(`${Url}/upload-pdf`, formDataPdf, {
           headers: { "Content-Type": "multipart/form-data" },
         });
     
         const formDataJson = new FormData();
         formDataJson.append("file", jsonFile);
     
-        const jsonRes = await axios.post("https://pdfserver-x314vhv1.b4a.run/upload-json", formDataJson, {
+        const jsonRes = await axios.post(`${Url}/upload-json`, formDataJson, {
           headers: { "Content-Type": "multipart/form-data" },
         });
     
