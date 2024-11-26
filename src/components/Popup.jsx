@@ -33,7 +33,7 @@ const Popup = ({metaData=[],setIsDialogueOpen}) => {
         <span  onClick={()=>setIsDialogueOpen((prev)=>!prev)} className='hover:rotate-45 ease-in-out duration-300 h-8 cursor-pointer w-8 mx-2 absolute top-0 -right-4 flex  font-bold items-center justify-center rounded-full'>
         <img src="/cross-icon.png" alt="" />
         </span>
-            <div className="flex text-sm font-semibold text-zinc-600  pt-10 w-full h-full flex-col ">
+            <div className="flex text-sm font-semibold text-zinc-600  pt-10 w-auto h-full flex-col ">
             <div className='grid grid-cols-3 '>
       {metaData.map((data, index) => (
         <div key={index} className=' m-2 p-10 text-sm font-semibold text-zinc-600 border  px-4 py-4 rounded-md bg-gray-100'>
