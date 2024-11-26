@@ -91,13 +91,13 @@ const Home = () => {
   </label>
   {pdfFile && (
     <p className="text-sm text-green-600">
-      {pdfFile.name}
+      {pdfFile?.name}
     </p>
   )}
 </div>
 <div className="flex flex-col items-center gap-4 p-6 border border-gray-300 rounded-lg shadow-md bg-yellow-100">
   <label
-    htmlFor="upload-pdf"
+    htmlFor="upload-json"
     className="flex flex-col items-center justify-center w-64 h-28 border-2 border-dashed border-gray-400 rounded-lg bg-yellow-100 hover:bg-yellow-200 cursor-pointer"
   >
     <div className="flex flex-col items-center justify-center">
@@ -117,14 +117,9 @@ const Home = () => {
       </svg>
       <p className="mt-2 text-sm text-gray-600">Click to upload JSON </p>
     </div>
-    <input
-      id="upload-json"
-      required="true"
-      type="file"  onChange={e=>setJsonFile(e.target.files[0])}
-      className="hidden"
-    />
+    <input type="file" id='upload-json'  onChange={e=>setJsonFile(e.target.files[0])} className="hidden" />
   </label>
-  {pdfFile && (
+  {jsonFile && (
     <p className="text-sm text-zinc-900">
       {jsonFile.name} 
     </p>
