@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import Popup from '../components/Popup';
+import FormDilogue from '../components/FormDilogue';
 
 
 export const Url = "https://pdfserver-x314vhv1.b4a.run"
@@ -12,6 +13,7 @@ const Home = () => {
     const [pdfFile, setPdfFile] = useState(null)
     const [jsonFile, setJsonFile] = useState(null)
     const [loading,setLoading] =  useState(false)
+    const [popup, setPopup] = useState(false)
     
     async function getPdfs() {
       const { data } = await axios.get(`${Url}/get-pdf-files`);
@@ -84,7 +86,6 @@ const Home = () => {
     <input
       id="upload-pdf"
       type="file"
-      required="true"
       accept="application/pdf"
       onChange={(e) => setPdfFile(e.target.files[0])}
       className="hidden"
@@ -136,9 +137,16 @@ const Home = () => {
     </button>
         
       </div>
-      <div className="container max-w-7xl flex mx-auto mt-16 flex-col ">
+      <div className="container max-w-7xl relative flex mx-auto mt-16 flex-col ">
+        <div className='flex items-center justify-between'>
         <h1 className='text-5xl font-semibold'>Documents</h1>
-        
+        <button onClick={()=>setPopup(true)} className='px-8 py-2 bg-black hover:bg-zinc-700 rounded-md text-white font-semibold'>Upload PDF</button>
+        </div>
+        { popup &&
+          <div className='absolute top-0 left-[40%]'>
+        <FormDilogue setPopup={setPopup}/>
+        </div>
+}
        <div className='grid grid-cols-5 '>
        {
         folders.map((folder, index) =>  <Link key={folder} to={`/view-pdf/${folder}`} className="flex hover:bg-zinc-300/50 ease-in-out duration-600 mx-6 py-8 rounded-lg flex-col items-center">
