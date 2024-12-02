@@ -21,22 +21,14 @@ const FormDilogue = ({setPopup}) => {
         formData.append("coordinates",true)
         console.log(formData)
         setLoading(true)
-        const {data} = await axios.post(`/general/v0/general`, formData, {
-          headers: { "Content-Type": "multipart/form-data" ,"Accept":"application/json","unstructured-api-key":"FauAsZ3loP6hpfBQZwPvN8U5kY4pW2"},
+        const {data} = await axios.post(`${Url}/parse-pdf`, formData, {
+          
         });
         setLoading(false)
         console.log(JSON.stringify(data))
 
+       
         if(data){
-          const formDataPdf = new FormData();
-        formDataPdf.append("file", pdfFile);
-        formDataPdf.append("filedata",JSON.stringify(data))
-        const pdfRes = await axios.post(`${Url}/upload-pdf`, formDataPdf, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-        console.log('pdfres',pdfRes.data)
-        }
-        if(pdfRes?.data){
           alert("File Uploaded successfully")
         }
 
