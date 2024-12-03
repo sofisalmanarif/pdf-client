@@ -5,19 +5,21 @@ import { Url } from '../pages/Home'
 const FormDilogue = ({setPopup}) => {
      const [pdfFile, setPdfFile] = useState(null)
      const [strategy, setStrategy] = useState("")
+     const [chunkingStrategy, setChunkingStrategy] = useState("")
      const [loading, setLoading] = useState(false)
 
      async function submitPdfHAndler (){
         if(pdfFile === null){
             alert("set pdf")
         }
-        console.log(strategy,
+        console.log(strategy,chunkingStrategy,
             pdfFile
         )
         try {
             const formData = new FormData();
         formData.append("files", pdfFile);
         formData.append("strategy",strategy)
+        formData.append("chunking_strategy",chunkingStrategy)
         formData.append("coordinates",true)
         console.log(formData)
         setLoading(true)
@@ -39,7 +41,7 @@ const FormDilogue = ({setPopup}) => {
 
      }
   return (
-    <div className='flex relative h-96 w-96 px-8 gap-8 bg-white justify-center rounded-lg shadow-md flex-col items-center'>
+    <div className='flex relative h-[450px] w-96 px-8 gap-8 bg-white justify-center rounded-lg shadow-md flex-col items-center'>
         <span  onClick={()=>setPopup((prev)=>!prev)} className='hover:rotate-45 ease-in-out duration-300 h-8 cursor-pointer w-8 mx-2 absolute top-0 right-4 flex  font-bold items-center justify-center rounded-full'>
         <img src="/cross-icon.png" alt="" />
         </span>
@@ -47,6 +49,10 @@ const FormDilogue = ({setPopup}) => {
         <div className='flex flex-col w-full'>
     <label className='blocked' htmlFor="">Strategy</label>
     <input value={strategy} onChange={(e)=>setStrategy(e.target.value)} className='w-full border border-gray-300 px-2 py-1 rounded-md ' placeholder="eg:hi_res" type="text" />
+</div>
+<div className='flex flex-col w-full'>
+    <label className='blocked' htmlFor=""> Chunking Strategy</label>
+    <input value={chunkingStrategy} onChange={(e)=>setChunkingStrategy(e.target.value)} className='w-full border border-gray-300 px-2 py-1 rounded-md ' placeholder="eg:by_title" type="text" />
 </div>
         <div className="flex w-full flex-col items-center gap-4 px-0 py-1 border border-gray-300 rounded-lg shadow-md bg-white">
   <label
